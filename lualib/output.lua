@@ -1,4 +1,5 @@
-﻿output = {}
+﻿local cjson = require("cjson")
+output = {}
 
 output.debug = function (msg)
     output._error("000", msg)
@@ -39,7 +40,6 @@ end
 
 output._exit = function (res)
     ngx.header.content_type = "application/json; charset=UTF-8";
-    local cjson = require("cjson")
     ngx.print(cjson.encode(res))
     ngx.exit(ngx.HTTP_OK)
 end
