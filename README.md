@@ -61,6 +61,7 @@ curl http://xxx.com/app/message?type=blacklist&do=get&token=xxx
 "nickname":"昵称",
 "icon":"http://xxx.jpg", 
 }]
+```
 
 # blacklist del
 
