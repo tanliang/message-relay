@@ -16,7 +16,7 @@ curl -d "$json" http://xxx.com/app/message?type=message&do=set&token=xxx&md5_id=
 ```json
 { 
 "time":1449024499,
-"nickname":"昵称",
+"nickname":"github",
 "content":"what's up man!", 
 "icon":"http://xxx.jpg", 
 "redirect":"http://xxx",
@@ -32,7 +32,7 @@ curl http://xxx.com/app/message?type=message&do=get&token=xxx
 { 
 "md5_id":"5f8831aa46c5a6989ffbff1132430812",
 "time":1449024499,
-"nickname":"昵称",
+"nickname":"github",
 "content":"what's up man!", 
 "icon":"http://xxx.jpg", 
 "redirect":"http://xxx",
@@ -46,7 +46,7 @@ curl -d "$json" http://xxx.com/app/message?type=blacklist&do=set&token=xxx&md5_i
 
 ```json
 { 
-"nickname":"昵称",
+"nickname":"github",
 "icon":"http://xxx.jpg", 
 }
 ```
@@ -58,7 +58,7 @@ curl http://xxx.com/app/message?type=blacklist&do=get&token=xxx
 ```json
 [{
 "md5_id":"5f8831aa46c5a6989ffbff1132430812", 
-"nickname":"昵称",
+"nickname":"github",
 "icon":"http://xxx.jpg", 
 }]
 ```
