@@ -24,6 +24,8 @@ curl -d "$json" http://xxx.com/app/message?type=message&do=set&token=xxx&md5_id=
 }
 ```
 
+<em>message relay service use internally, need to be wrapped by another api for adding extra activity, like token verification, push service etc.</em>
+
 # message recv
 
 curl http://xxx.com/app/message?type=message&do=get&token=xxx
