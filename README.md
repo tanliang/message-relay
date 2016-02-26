@@ -28,7 +28,7 @@ curl -d "$json" http://xxx.com/app/message?type=message&do=set&token=xxx&md5_id=
 
 # message recv
 
-curl http://xxx.com/app/message?type=message&do=get&token=xxx
+curl http://xxx.com/app/message?type=message&do=get&token=xxx[&key=admins]
 
 ```json
 { 
@@ -41,6 +41,8 @@ curl http://xxx.com/app/message?type=message&do=get&token=xxx
 "type":"0"
 }
 ```
+
+<em>add [&key=admins] for admin message fetch, eq "admins" in msg_do.lua.</em>
 
 # blacklist add
 

@@ -1,7 +1,7 @@
 local output = require('output')
 local msg_do = require('msg_do')
 
-msg_do.init({["type"] = "required", ["do"] = "required", ["token"] = "required", ["md5_id"] = ""})
+msg_do.init({["type"] = "required", ["do"] = "required", ["token"] = "required", ["md5_id"] = "", ["key"] = ""})
 
 -- biz handle begin
 local switch = {

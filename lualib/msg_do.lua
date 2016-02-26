@@ -8,8 +8,8 @@ local _M = {
 
 local mt = { __index = _M }
 
-local whitelist = {
-    ["ba58ea74xhdywf504869944a840aaf7b"] = "whitelist"
+local admins = {
+    ["ba58ea74xhdywf504869944a840aaf7b"] = "admins"
 }
 
 local total_limit = 300
@@ -76,6 +76,11 @@ _M.get = {
         return check(rdb.hgetall(ngx.ctx.token_key))
     end,
     ["message"] = function ()
+        if admins[ngx.ctx.token_id] ~= nil then
+            if ngx.ctx.args["key"] == "" or admins[ngx.ctx.token_id] ~= ngx.ctx.args["key"] then
+    	        return nil
+            end
+        end
         local time = os.time()
         local res = check(rdb.exec("zrevrangebyscore", ngx.ctx.token_key, time, 0))
         if res then
@@ -92,7 +97,7 @@ _M.set = {
             output.args_invalid("nickname is empty")
         end
 
-        if whitelist[ngx.ctx.args["md5_id"]] ~= nil then
+        if admins[ngx.ctx.args["md5_id"]] ~= nil then
             output.args_invalid("md5_id invalid")
         end
 
@@ -122,12 +127,12 @@ _M.set = {
 
         -- is total over limited
         local res = rdb.exec("zcount", key, 0, os.time())
-        if whitelist[ngx.ctx.token_id] == nil and whitelist[ngx.ctx.args["md5_id"]] == nil and res >= total_limit then
+        if admins[ngx.ctx.token_id] == nil and admins[ngx.ctx.args["md5_id"]] == nil and res >= total_limit then
             output._error("502", "total limited")
         end
         
         -- is send message too fast, if 5 minutes send over 100 message
-        if whitelist[ngx.ctx.token_id] == nil then
+        if admins[ngx.ctx.token_id] == nil then
             local key_for_send_message_to_fast = ngx.ctx.token_id.."|"..tostring(total_limit)
             local res = rdb.exec("incr", key_for_send_message_to_fast)
             if res == 1 then
