@@ -51,7 +51,7 @@ local commands = {
 
 function _M.connect(sock, pass)
     ngx.ctx.rdb = redis:new()
-    ngx.ctx.rdb:set_timeout(1000)
+    ngx.ctx.rdb:set_timeout(3000)
     
     local _sock = sock or 'unix:/tmp/redis.sock'
     local ok, err = ngx.ctx.rdb:connect(_sock)
